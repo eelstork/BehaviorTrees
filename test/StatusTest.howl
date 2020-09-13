@@ -11,12 +11,6 @@ public class StatusTest : TestBase {
 	[Test] public void ConstructdoneStatus   () => o ( new S(+1).complete );
 	[Test] public void ConstructRunningStatus() => o ( new S( 0).running  );
 
-	[Test] public void Map(){
-		o ( D.Map(D, F, R).running  );
-		o ( F.Map(D, F, R).complete );
-		o ( R.Map(D, F, R).failing  );
-	}
-
 	[Test] public void PassByValue(){
 		S a = new S(1);
 		S b = a;
