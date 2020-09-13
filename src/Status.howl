@@ -1,0 +1,77 @@
+⊐̥ System.Math; ⊐ ArgEx = System.ArgumentException;
+
+⊓ Activ.Rx{
+‒⌷ᴾ ⊟ status{
+
+	⌷ ᆞ ω;
+
+	‒̥⌷ status done = ⌢ status(+1),
+						  fail = ⌢ status(-1),
+							cont = ⌢ status( 0);
+
+	‒ ㅇ failing  → ω == -1;
+	‒ ㅇ running  → ω ==  0;
+	‒ ㅇ complete → ω == +1;
+
+  ‒ status(int ω) → ⦿.ω = ω ≥ -1 ∨ ω ≤ 1 ? ω
+		: throw ⌢ ArgEx($"Init value out of bounds {ω}");
+
+	‒ status Map(in status failTo, in status contTo, in status doneTo){
+		⤭ (ω){
+			⥰ -1: ⮐ ⌢ status(failTo.ω);
+			⥰  0: ⮐ ⌢ status(contTo.ω);
+			⥰ +1: ⮐ ⌢ status(doneTo.ω);
+			default: throw ⌢ System.ArgumentException();
+		}
+	}
+
+	‒̥ status operator + (status x, status y)
+	→ ⌢ status(Max(x.ω, y.ω));
+
+	‒̥ status operator * (status x, status y)
+	→ ⌢ status(Min(x.ω, y.ω));
+
+	‒̥ status operator % (status x, status y) → ⌢ status(x.ω);
+
+	‒̥ status operator ! (status s) → ⌢ status(-s.ω);
+
+	‒̥ status operator ~ (status s) → ⌢ status(s.ω * s.ω);
+
+	‒̥ status operator + (status s) → ⌢ status(s.ω==+1?+1:s.ω+1);
+    ‒̥ status operator - (status s) → ⌢ status(s.ω==-1?-1:s.ω-1);
+
+	‒̥ status operator ++ (status s) → +s;
+	‒̥ status operator -- (status s) → -s;
+
+	‒̥ implicit operator status(ㅇ s) → ⌢ status(s ? +1 : -1);
+
+  ‒̥ status operator & (status x, status y){
+    #if !AL_OPTIMIZE
+      ⮐ (x.ω < +1) ? throw ⌢ ArgEx() : y;
+    #else
+      ⮐ y;
+    #endif
+  }
+
+  ‒̥ status operator | (status x, status y){
+    #if !AL_OPTIMIZE
+      ⮐ (x.ω > -1) ? throw ⌢ ArgEx() : y;
+    #else
+      ⮐ y;
+    #endif
+  }
+
+  ‒̥ ㅇ operator true  (status s) → s.ω != -1;
+  ‒̥ ㅇ operator false (status s) → s.ω != +1;
+
+  ‒⁺ ㅇ Equals(⊡ x) → x is status ? Equals((status)x) : false;
+
+  ‒ ㅇ Equals(status x) → this == x;
+
+  ‒̥ ㅇ operator == (status x, status y) → x.ω == y.ω;
+  ‒̥ ㅇ operator != (status x, status y) → !(x == y);
+
+  ‒⁺ ᆞ GetHashCode ⎚ ω;
+  ‒⁺ ㄹ ToString    ⎚ ω.ToString();
+
+}}
