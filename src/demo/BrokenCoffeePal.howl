@@ -1,0 +1,31 @@
+⊐ Activ.Rx; ⊐̥ Activ.Rx.status;
+
+‒ ○ BrokenCoffeePal{
+
+    ‒ Container tap, pot, pouch, cup;
+    ‒ Kettle kettle;
+
+    ‒ ⑂ Brew()
+    → Pour(tap, kettle)
+    ∧ kettle.Switch(✓)
+    ∧ Pour(pouch, pot)
+    ∧ kettle.enabled ? cont : done
+    ∧ Pour(kettle, pot)
+    ∧ Wait(minutes: 1)
+    ∧ Pour(pot, cup);
+
+    ‒ ⑂ Pour(⊡ src, ⊡ dst) → done;
+
+    ‒ ⑂ Wait(ᆞ minutes) → done;
+
+}
+
+‒ ○ Container{}
+
+‒ ○ Kettle : Container{
+
+    ‒ ㅇ enabled;
+
+    ‒ ㅇ Switch(ㅇ on) → enabled = on;
+
+}

@@ -3,6 +3,7 @@ using NUnit.Framework;
 using Activ.Rx; using S = Activ.Rx.status;
 using static Activ.Rx.status;
 
+/*
 public class StatusTest : TestBase {
 
 	readonly S F = new S(-1), R = new S(0), D = new S(1);
@@ -167,3 +168,4 @@ public class StatusTest : TestBase {
 	}
 
 }
+*/

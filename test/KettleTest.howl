@@ -1,0 +1,11 @@
+⊐ NUnit.Framework;
+
+‒ ○ KettleTest : TestBase{
+
+    ؟ Switch([Values(✓, ✗)] ㅇ flag){
+        ∙ kettle = ⌢ Kettle();
+        o( kettle.Switch(flag), flag);
+        o( kettle.enabled, flag);
+    }
+
+}

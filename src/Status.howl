@@ -7,19 +7,19 @@
 
 	‒̥ ⌷ status done = ⌢ status(+1),
 						   fail = ⌢ status(-1),
-							 cont = ⌢ status( 0);
+						   cont = ⌢ status( 0);
 
 	‒ ㅇ failing  → ω ☰ -1;
 	‒ ㅇ running  → ω ☰  0;
 	‒ ㅇ complete → ω ☰ +1;
 
-  ‒ status(ᆞ ω) → ⦿.ω = ω ≥ -1 ∨ ω ≤ +1 ? ω
+    ‒ status(ᆞ ω) → ⦿.ω = ω ≥ -1 ∨ ω ≤ +1 ? ω
 		: throw ⌢ ArgEx($"Init value out of bounds {ω}");
 
 	// Sequence/Selector
 
 	‒̥ status ⨕ & (status x, status y) → y;
-  ‒̥ status ⨕ | (status x, status y) → y;
+    ‒̥ status ⨕ | (status x, status y) → y;
 
 	‒̥ ㅇ ⨕ true  (status s) → s.ω != -1;
 	‒̥ ㅇ ⨕ false (status s) → s.ω != +1;
