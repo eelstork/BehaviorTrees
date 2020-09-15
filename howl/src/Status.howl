@@ -6,20 +6,20 @@
 	⌷ ᆞ ω;
 
 	‒̥ ⌷ status done = ⌢ status(+1),
-						   fail = ⌢ status(-1),
-						   cont = ⌢ status( 0);
+	           fail = ⌢ status(-1),
+		   cont = ⌢ status( 0);
 
 	‒ ㅇ failing  → ω ☰ -1;
 	‒ ㅇ running  → ω ☰  0;
 	‒ ㅇ complete → ω ☰ +1;
 
-    ‒ status(ᆞ ω) → ⦿.ω = ω ≥ -1 ∨ ω ≤ +1 ? ω
-		: throw ⌢ ArgEx($"Init value out of bounds {ω}");
+        ‒ status(ᆞ ω) → ⦿.ω = ω ≥ -1 ∨ ω ≤ +1 ? ω
+          : throw ⌢ ArgEx($"Init value out of bounds {ω}");
 
 	// Sequence/Selector
 
 	‒̥ status ⨕ & (status x, status y) → y;
-    ‒̥ status ⨕ | (status x, status y) → y;
+        ‒̥ status ⨕ | (status x, status y) → y;
 
 	‒̥ ㅇ ⨕ true  (status s) → s.ω != -1;
 	‒̥ ㅇ ⨕ false (status s) → s.ω != +1;
@@ -33,7 +33,7 @@
 	‒̥ status ⨕ !  (status s) → ⌢ status(-s.ω);
 	‒̥ status ⨕ ~  (status s) → ⌢ status(s.ω * s.ω);
 	‒̥ status ⨕ +  (status s) → ⌢ status(s.ω ☰ +1 ? +1 : s.ω + 1);
-  ‒̥ status ⨕ -  (status s) → ⌢ status(s.ω ☰ -1 ? -1 : s.ω - 1);
+        ‒̥ status ⨕ -  (status s) → ⌢ status(s.ω ☰ -1 ? -1 : s.ω - 1);
 	‒̥ status ⨕ ++ (status s) → +s;
 	‒̥ status ⨕ -- (status s) → -s;
 
@@ -43,14 +43,13 @@
 
 	// Equality and hashing
 
-  ‒⁺ ㅇ Equals(⊡ x) → x is status ? Equals((status)x) : ✗;
+        ‒⁺ ㅇ Equals(⊡ x) → x is status ? Equals((status)x) : ✗;
+        ‒  ㅇ Equals(status x) → ⦿ ☰ x;
 
-  ‒ ㅇ Equals(status x) → ⦿ ☰ x;
+        ‒̥ ㅇ ⨕ ☰ (status x, status y) → x.ω ☰ y.ω;
+        ‒̥ ㅇ ⨕ ≠  (status x, status y) → !(x ☰ y);
 
-  ‒̥ ㅇ ⨕ ☰ (status x, status y) → x.ω ☰ y.ω;
-  ‒̥ ㅇ ⨕ ≠  (status x, status y) → !(x ☰ y);
-
-  ‒⁺ ᆞ GetHashCode ⎚ ω;
-  ‒⁺ ㄹ ToString    ⎚ ω.ToString();
+        ‒⁺ ᆞ GetHashCode ⎚ ω;
+        ‒⁺ ㄹ ToString    ⎚ ω.ToString();
 
 }}

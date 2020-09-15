@@ -1,1 +1,5 @@
 build
+cs/src/obj
+cs/src/bin
+cs/test/obj
+cs/test/bin
