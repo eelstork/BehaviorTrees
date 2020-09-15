@@ -12,6 +12,6 @@ Implementations:
 
 The internal structure of this repository may change in the future. External links should be pointing at https://github.com/eelstork/behaviortrees
 
-## Building, running tests etc
+## Building, running tests
 
-`cd` to the *cs* directory then `dotnet build`, `dotnet test`, ...
+`cd` to the *cs* directory then `dotnet build`, `dotnet test`
