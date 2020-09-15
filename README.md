@@ -14,4 +14,4 @@ The internal structure of this repository may change in the future. External lin
 
 ## Building, running tests
 
-`cd` to the *cs* directory then `dotnet build`, `dotnet test`
+`cd` to the *cs/* directory then `dotnet build`, `dotnet test`
